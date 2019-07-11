@@ -1,0 +1,6 @@
+name: pi_zero_env
+channels:
+  -
+   defaults
+prefix: /home/pi/berryconda3/envs/pi_zero_env
+
