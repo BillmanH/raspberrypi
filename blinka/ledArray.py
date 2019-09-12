@@ -17,3 +17,11 @@ def df_to_leds(df):
 def random_color():
     x = np.random.randint(0,255),np.random.randint(0,255),np.random.randint(0,255)
     return x
+
+def paginate_df(df):
+    for i in df.index:
+        if i % 2 == 0:
+            pass
+        else:
+            df.loc[i] = df.loc[i].values[::-1]
+    return df
