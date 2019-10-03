@@ -1,17 +1,39 @@
 import numpy as np
 import pandas as pd
+import argparse
+
 
 from ast import literal_eval
 import board
 import neopixel
-pixels = neopixel.NeoPixel(board.D18, 180)
+
+
+parser = argparse.ArgumentParser(description='argparse')
+parser.add_argument(
+    '--numled',
+    default=180,
+    help='number of leds in array')
+parser.add_argument(
+    '-x',
+    default=20,
+    help='df.columns')
+parser.add_argument(
+    '-y',
+    default=9,
+    help='df.index')
+
+my_namespace = parser.parse_args()
+print("using ",my_namespace.numled," leds")
+
+numled = my_namespace.numled
+
+pixels = neopixel.NeoPixel(board.D18, numled)
 
 
 #local libraries
 import ledArray as led
 
-numled = 180
-shape = (9,20)
+shape = (my_namespace.y,my_namespace.x)
 
 leds = led.dummy_pixels(numled)
 df = led.leds_to_df(leds,shape)
