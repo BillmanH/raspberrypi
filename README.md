@@ -6,10 +6,18 @@ However I have some stuff for a pi_zero build as well.
 
 ## Two major sections
 **webapp** localhosted flask app for buttons and controlls
+
 **blinka** Manipulating LEDs using adafruit neopixel library.
 
 
 # Running the web app
-python app.py
+```
+sudo python3 app.py
+```
+
+# command line scripts for blinking apps: 
+```
+sudo python3 blinka/pulse_grid.py
+```
 
 the connection is the same as the IP address that you use for SSH. 
