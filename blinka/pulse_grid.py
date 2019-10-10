@@ -11,7 +11,7 @@ import neopixel
 parser = argparse.ArgumentParser(description='argparse')
 parser.add_argument(
     '--numled',
-    default=180,
+    default=160,
     help='number of leds in array')
 parser.add_argument(
     '-x',
@@ -35,7 +35,8 @@ import ledArray as led
 
 shape = (my_namespace.y,my_namespace.x)
 
-leds = led.dummy_pixels(numled)
+#leds = led.dummy_pixels(numled)
+leds = np.array(range(numled))
 df = led.leds_to_df(leds,shape)
 df = led.paginate_df(df)
 

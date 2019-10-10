@@ -50,20 +50,12 @@ class Screen:
         self.leds = pd.DataFrame(df_shape)
         if self.alter_rows:
             self.paginate_df()
-        self.colors = (pd.DataFrame(columns=range(shape[1]),
-                                    index=range(shape[0]))
+        self.colors = (pd.DataFrame(columns=range(df_shape.shape[1]),
+                                    index=range(df_shape.shape[0]))
                        .fillna("0,0,0"))
 
 
-s = Screen(20, 9)
-print(s)
-s.colors
 
-
-# %%
-s.leds
-
-# %%
 
 
 # %%
