@@ -12,7 +12,6 @@ class Screen:
     def __init__(self,
                  nrows,
                  ncols,
-                 NeoPixel="dummy",
                  board="dummy",
                  alter_rows=True,
                  ):
@@ -28,7 +27,7 @@ class Screen:
         self.alter_rows = alter_rows
 
         # actvate and build dfs once the params are set.
-        self.pixels = self.setPixels(NeoPixel)
+        self.pixels = self.setPixels()
 
     def __str__(self):
         return f"({self.nrows},{self.ncols}) screen"
@@ -40,11 +39,11 @@ class Screen:
             else:
                 self.leds.loc[i] = self.leds.loc[i].values[::-1]
 
-    def setPixels(self, NeoPixel):
-        if NeoPixel == "dummy":
+    def setPixels(self):
+        if self.board == "dummy":
             pixels = np.array([i for i in list(range(self.numled))])
         else:
-            pixels = neopixel.NeoPixel(board, self.numled)
+            pixels = neopixel.NeoPixel(self.board, self.numled)
         df_shape = np.array([i for i in list(range(self.numled))])
         df_shape.shape = (self.nrows, self.ncols)
         self.leds = pd.DataFrame(df_shape)
@@ -53,29 +52,44 @@ class Screen:
         self.colors = (pd.DataFrame(columns=range(df_shape.shape[1]),
                                     index=range(df_shape.shape[0]))
                        .fillna("0,0,0"))
+    
+    def get_vals(self,x,y):
+        l = [self.leds.loc[x,y].values.flatten(),
+            self.colors.loc[x,y].applymap(self.to_set).values.flatten()]
+        return [[l[0][i],l[1][i]] for i in range(len(l[0]))]
+    
+    def set_vals(self,x,y,rgb):
+        rgb = self.to_str(rgb)
+        self.colors.loc[y,x] = rgb
+        
+    def random_color(self):
+        x = np.random.randint(0, 255), np.random.randint(
+            0, 255), np.random.randint(0, 255)
+        return x
 
+    #Value cleaners and transformers
+    def to_set(self,c):
+        '''
+        where c is a color
+        '''
+        c = [int(i) for i in c.split(",")]
+        return tuple(c)
 
+    def to_str(self,c):
+        '''
+        where c is a color (r,g,b) tuple
+        '''
+        def cap(c):
+            # if it can't be an int, then it is zero
+            try:
+                c = int(c)
+            except: 
+                c = 0
+            if c > 255:
+                c = 255
 
+            return str(c)
 
+        c = ",".join([cap(i) for i in c])
+        return c
 
-# %%
-
-
-def df_to_leds(df):
-    x = df.values
-    return x.flatten()
-
-
-def random_color():
-    x = np.random.randint(0, 255), np.random.randint(
-        0, 255), np.random.randint(0, 255)
-    return x
-
-
-def paginate_df(df):
-    for i in df.index:
-        if i % 2 == 0:
-            pass
-        else:
-            df.loc[i] = df.loc[i].values[::-1]
-    return df

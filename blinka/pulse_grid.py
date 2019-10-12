@@ -10,10 +10,6 @@ import neopixel
 
 parser = argparse.ArgumentParser(description='argparse')
 parser.add_argument(
-    '--numled',
-    default=160,
-    help='number of leds in array')
-parser.add_argument(
     '-x',
     default=20,
     help='df.columns')
@@ -23,9 +19,9 @@ parser.add_argument(
     help='df.index')
 
 my_namespace = parser.parse_args()
-print("using ",my_namespace.numled," leds")
+numled = my_namespace.x*my_namespace.y
 
-numled = my_namespace.numled
+print("using ",numled," leds")
 
 pixels = neopixel.NeoPixel(board.D18, numled)
 
