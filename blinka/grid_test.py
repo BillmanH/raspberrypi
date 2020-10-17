@@ -9,6 +9,10 @@ numled = int(myargs[1])
 end_led = int(myargs[2])
 
 
+# condition to make numled => end_led
+if numled<=end_led:
+    numled=end_led+1
+
 # not all of the grid tests can read PWM (Pulse width modulation)
 pixels = neopixel.NeoPixel(board.D18, numled)
 
