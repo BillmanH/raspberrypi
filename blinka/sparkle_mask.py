@@ -18,3 +18,4 @@ for i in myRange:
            np.random.randint(0, 255),
            np.random.randint(0, 255))
     pixels[y] = rgb
+

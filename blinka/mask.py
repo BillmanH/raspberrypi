@@ -6,7 +6,7 @@ import neopixel
 import read_excel
 
 # %%
-pixels = neopixel.NeoPixel(board.D18, 166)
+pixels = neopixel.NeoPixel(board.D18, 165)
 
 # %%
 for i in read_excel.pattern:
@@ -14,3 +14,6 @@ for i in read_excel.pattern:
         pixels[i[0]] = (i[1][0], i[1][1], i[1][2])
     except:
         pass
+
+
+pixels[i[0] for i in pattern] = [tuple(j for j in i[1]) for i in pattern]

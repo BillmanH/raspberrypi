@@ -39,3 +39,6 @@ pattern = [[int(led_df.loc[i, 'led']),
            for i in led_df.index]
 print(f"pattern length: {len(pattern)}")
 # %%
+
+
+# %%
