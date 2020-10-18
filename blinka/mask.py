@@ -10,4 +10,5 @@ pixels = neopixel.NeoPixel(board.D18, 165)
 
 # %%
 for i in read_excel.pattern:
+    print(i)
     pixels[i[0]] = i[1]
