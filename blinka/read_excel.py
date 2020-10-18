@@ -19,7 +19,7 @@ def get_excel(name):
 
 
 led_lights = get_excel("Mask")
-pattern = get_excel("pattern 2")
+pattern = get_excel("pattern 1")
 # print(led_lights.shape, pattern.shape)
 
 
