@@ -16,4 +16,5 @@ for i in read_excel.pattern:
         pass
 
 
-pixels[[i[0] for i in pattern]] = [tuple(j for j in i[1]) for i in pattern]
+pixels[[i[0] for i in read_excel.pattern]] = [
+    tuple(j for j in i[1]) for i in read_excel.pattern]
