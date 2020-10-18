@@ -36,4 +36,8 @@ def cycle_patterns():
 
 # pixels[[i[0] for i in read_excel.pattern]] = [
 #     tuple(j for j in i[1]) for i in read_excel.pattern]
-cycle_patterns()
+
+# %%
+# Main Run
+while True:
+    cycle_patterns()
