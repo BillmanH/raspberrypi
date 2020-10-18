@@ -18,9 +18,11 @@ def get_excel(name):
                          index_col=0)
 
 
-led_lights = get_excel("Mask")
-pattern = get_excel("pattern 1")
-# print(led_lights.shape, pattern.shape)
+rows = [i+1 for i in range(19)]
+columns = [i+1 for i in range(18)]
+led_lights = get_excel("Mask").loc[rows, columns]
+pattern = get_excel("pattern 1").loc[rows, columns]
+print(f"led: {led_lights.shape}, pattern: {pattern.shape}")
 
 
 # %%
