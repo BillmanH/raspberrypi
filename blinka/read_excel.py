@@ -15,12 +15,12 @@ xl = pd.ExcelFile(params['excel_file']).sheet_names
 def get_excel(name):
     return pd.read_excel(params['excel_file'],
                          sheet_name=name,
-                         headers=None)
+                         index_col=0)
 
 
-led_lights = get_excel("Mask").iloc[0:18, 0:18]
-pattern = get_excel("pattern 2").iloc[0:18, 0:18]
-print(led_lights.shape, pattern.shape)
+led_lights = get_excel("Mask")
+pattern = get_excel("pattern 2")
+# print(led_lights.shape, pattern.shape)
 
 
 # %%
@@ -35,5 +35,5 @@ pattern = [[int(led_df.loc[i, 'led']),
             [int(c) for c in led_df.loc[i, 'color'].split(',')]
             ]
            for i in led_df.index]
-pattern
+print(f"pattern length: {len(pattern)}")
 # %%
