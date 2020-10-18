@@ -21,24 +21,24 @@ def get_excel(name):
 rows = [i+1 for i in range(19)]
 columns = [i+1 for i in range(18)]
 led_lights = get_excel("Mask").loc[rows, columns]
-pattern = get_excel("pattern 1").loc[rows, columns]
-print(f"led: {led_lights.shape}, pattern: {pattern.shape}")
+
+# %%
+# Getting patterns
+pattern_sheets = [x for x in xl if 'pattern' in x]
+pats = [get_excel(pattern).loc[rows, columns] for pattern in pattern_sheets]
 
 
 # %%
-led_df = pd.DataFrame(led_lights.values.flatten(), columns=['led'])
-led_df['color'] = pattern.values.flatten()
-led_df = led_df.dropna().sort_values('led')
-
-# %%
-
-
-pattern = [[int(led_df.loc[i, 'led']),
-            [int(c) for c in led_df.loc[i, 'color'].split(',')]
-            ]
-           for i in led_df.index]
-print(f"pattern length: {len(pattern)}")
-# %%
+# Parsing out patterns
+def get_pattern(pat):
+    led_df = pd.DataFrame(led_lights.values.flatten(), columns=['led'])
+    led_df['color'] = pat.values.flatten()
+    led_df = led_df.dropna().sort_values('led')
+    pattern = [[int(led_df.loc[i, 'led']),
+                [int(c) for c in led_df.loc[i, 'color'].split(',')]
+                ]
+               for i in led_df.index]
+    return pattern
 
 
-# %%
+pattern = [get_pattern(pat) for pat in pats]
