@@ -14,14 +14,14 @@ patterns = read_excel.pattern
 
 def sparkle_mask():
     y = 0
-    myRange = range(100)
+    myRange = range(50)
     for i in myRange:
         # this line resets the colors
         # pixels[y] = (0, 0, 0)
         y = np.random.randint(0, 165)
-        rgb = (np.random.randint(0, 255),
-               np.random.randint(0, 255),
-               np.random.randint(0, 255))
+        rgb = (np.random.randint(0, 175),
+               np.random.randint(0, 50),
+               np.random.randint(0, 50))
         pixels[y] = rgb
 
 
