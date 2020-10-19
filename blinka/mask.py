@@ -20,7 +20,7 @@ def sparkle_mask():
         # pixels[y] = (0, 0, 0)
         y = np.random.randint(0, 165)
         rgb = (np.random.randint(0, 255),
-               np.tookrandom.randint(0, 255),
+               np.random.randint(0, 255),
                np.random.randint(0, 255))
         pixels[y] = rgb
 
