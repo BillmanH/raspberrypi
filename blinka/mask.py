@@ -14,7 +14,7 @@ patterns = read_excel.pattern
 
 def sparkle_mask():
     y = 0
-    myRange = range(50)
+    myRange = range(150)
     for i in myRange:
         # this line resets the colors
         # pixels[y] = (0, 0, 0)
@@ -32,7 +32,6 @@ def cycle_patterns():
                 pixels[i[0]] = (i[1][0], i[1][1], i[1][2])
             except:
                 pass
-        sparkle_mask()
 
 
 # pixels[[i[0] for i in read_excel.pattern]] = [
@@ -42,3 +41,4 @@ def cycle_patterns():
 # Main Run
 while True:
     cycle_patterns()
+    sparkle_mask()
