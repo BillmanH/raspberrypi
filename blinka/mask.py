@@ -41,4 +41,4 @@ def cycle_patterns():
 # Main Run
 while True:
     cycle_patterns()
-    sparkle_mask()
+    # sparkle_mask()
