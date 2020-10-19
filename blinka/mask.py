@@ -16,10 +16,11 @@ def sparkle_mask():
     y = 0
     myRange = range(100)
     for i in myRange:
-        pixels[y] = (0, 0, 0)
+        # this line resets the colors
+        # pixels[y] = (0, 0, 0)
         y = np.random.randint(0, 165)
         rgb = (np.random.randint(0, 255),
-               np.random.randint(0, 255),
+               np.tookrandom.randint(0, 255),
                np.random.randint(0, 255))
         pixels[y] = rgb
 

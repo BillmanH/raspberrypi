@@ -21,5 +21,5 @@ sudo python3 app.py
 |---|---|---|
 | `grid_test.py` | testing led array. two `int` arguments are the length of the array and the position of the last led light. I use this to make sure my soldering was done correctly. | `sudo python3 grid_test.py 20 15` |
 | `read_excel.py` | reads a color matrix from an excel file. That way you can use an Excel sheet to 'draw' your pattern. | not used directly. this is imported in other scritps.  |
-|   |   |   |
+| `mask.py` | continuous loop that loads the patterns from excel and 'builds' the faces. | `sudo python3 mask.py` |
 
