@@ -34,10 +34,14 @@ def get_pattern(pat):
     led_df = pd.DataFrame(led_lights.values.flatten(), columns=['led'])
     led_df['color'] = pat.values.flatten()
     led_df = led_df.dropna().sort_values('led')
-    pattern = [[int(led_df.loc[i, 'led']),
-                [int(c) for c in led_df.loc[i, 'color'].split(',')]
-                ]
-               for i in led_df.index]
+    try:
+        pattern = [[int(led_df.loc[i, 'led']),
+                    [int(c) for c in led_df.loc[i, 'color'].split(',')]
+                    ]
+                   for i in led_df.index]
+    except:
+        print(led_df.values)
+        print("cannot parse int")
     return pattern
 
 
